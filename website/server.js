@@ -200,7 +200,7 @@ app.post("/login", encoder, function (req, res) {
                 // render home page
                 get_account(req, res);
             } else {
-                get_index(res, req);
+                get_index(req, res);
                 res.end();
             }
         }
