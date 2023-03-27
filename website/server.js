@@ -53,6 +53,9 @@ app.get("/register", (req, res) => {
 app.get("/logout", (req, res) => {
     get_logout(req, res);
 });
+app.get("/error", (req, res) => {
+    get_error(req, res);
+});
 
 function get_index(req, res) {
     res.render("pages/index", {
@@ -114,6 +117,7 @@ function show_account(req, res, user_id) {
                 res.end();
             } else {
                 //invalid userID
+                get_error(req, res, "Kein User Gefunden");
                 console.log("Kein User Gefunden. Hurensohn");
             }
         }
@@ -147,7 +151,11 @@ function get_logout(req, res) {
     if (req.session.loggedin) {
         do_logout(req, res);
     } else {
-        get_login(req, res);
+        get_error(
+            req,
+            res,
+            "Logout Fehlgeschlagen. Sie waren nicht Angemeldet"
+        );
     }
 }
 
@@ -161,7 +169,12 @@ function do_logout(req, res) {
     get_index(req, res);
 }
 
-function get_error(req, res) {}
+function get_error(req, res, errorMessage) {
+    res.render("pages/error", {
+        loggedin: req.session.loggedin,
+        errorMessage: errorMessage,
+    });
+}
 
 // host app on port xxxx
 app.listen(port, () => {
@@ -200,7 +213,11 @@ app.post("/login", encoder, function (req, res) {
                 // render home page
                 get_account(req, res);
             } else {
-                get_index(req, res);
+                get_error(
+                    req,
+                    res,
+                    "Login Fehlgeschlagen. Bitte versuchen sie es erneut"
+                );
                 res.end();
             }
         }
@@ -223,7 +240,7 @@ app.post("/register", encoder, function (req, res) {
             // If the account exists
             if (results.length > 0) {
                 //user already exists, skip login
-                get_index(req, res);
+                get_error(req, res, "Dieser Username ist bereits vergeben");
             } else {
                 connection.query(
                     "INSERT INTO accounts (email, firstname, lastname, username, password) VALUES (?,?,?,?,?)",
