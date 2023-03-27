@@ -16,12 +16,16 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" type="text/css" href="style.css" />
-
+        <script type="text/javascript" src="scripts.js"></script>
         <title>Account</title>
     </head>
     <body>
         <%- include('../components/navbar'); %>
         <br />
         <h1>Account</h1>
+        <br />
+        <div><%= user.username %></div>
+        <div><%= user.firstname %></div>
+        <div><%= user.lastname %></div>
     </body>
 </html>
