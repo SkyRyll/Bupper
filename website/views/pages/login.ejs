@@ -16,12 +16,28 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="loginRegister.css" />
         <script type="text/javascript" src="scripts.js"></script>
-        <title>Schönes Glas Optik</title>
+        <title>Login</title>
     </head>
     <body>
         <%- include('../components/navbar'); %>
-        <br />
-        <h1>Homepage</h1>
+        <div class="login-page">
+            <div class="form">
+                <form class="login-form" action="" method="POST">
+                    <input type="text" placeholder="username" name="username" />
+                    <input
+                        type="password"
+                        placeholder="password"
+                        name="password"
+                    />
+                    <button>login</button>
+                    <p class="message">
+                        Not registered?
+                        <a href="/register">Create an account</a>
+                    </p>
+                </form>
+            </div>
+        </div>
     </body>
 </html>
