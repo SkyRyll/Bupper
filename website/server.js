@@ -40,6 +40,7 @@ app.get("/register", (req, res) => {
 // host app on port xxxx
 app.listen(port, () => {
     console.log(`App listening at port ${port}`);
+    console.log("http://localhost:" + port + "/");
 });
 
 //connect to local database
@@ -71,6 +72,44 @@ app.post("/login", encoder, function (req, res) {
                 res.redirect("/");
             }
             res.end();
+        }
+    );
+});
+
+app.post("/register", encoder, function (req, res) {
+    var email = req.body.email;
+    var firstname = req.body.firstname;
+    var lastname = req.body.lastname;
+    var username = req.body.username;
+    var password = md5(req.body.password);
+
+    connection.query(
+        "SELECT * FROM accounts WHERE username = ?",
+        [username],
+        function (error, results, fields) {
+            // If there is an issue with the query, output the error
+            if (error) throw error;
+            // If the account exists
+            if (results.length > 0) {
+                //user already exists, skip login
+                res.redirect("/");
+            } else {
+                connection.query(
+                    "INSERT INTO accounts (email, firstname, lastname, username, password) VALUES (?,?,?,?,?)",
+                    [email, firstname, lastname, username, password],
+                    function (error, results, fields) {
+                        // If there is an issue with the query, output the error
+                        if (error) throw error;
+                        // account added
+                        //request.session.loggedin = true;
+                        //request.session.username = username;
+                        //request.session.userID = results.insertId;
+
+                        // render home page
+                        res.redirect("/account");
+                    }
+                );
+            }
         }
     );
 });
