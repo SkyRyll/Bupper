@@ -25,3 +25,12 @@ body {
 h1 {
     color: #ffffff;
 }
+
+p {
+    color: #ffffff;
+}
+
+.sgFooter {
+    background-color: #101010;
+    color: #ffffff;
+}
