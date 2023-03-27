@@ -165,24 +165,20 @@
                         </p>
                     </div>
                     <div class="col-md-10 mx-auto col-lg-5">
-                        <form class="p-4 p-md-5 border rounded-3 bg-light">
+                        <form
+                            class="p-4 p-md-5 border rounded-3 bg-light"
+                            action=""
+                            method="POST"
+                        >
                             <div class="form-floating mb-3">
                                 <input
                                     type="email"
+                                    name="email"
                                     class="form-control"
                                     id="floatingInput"
                                     placeholder="name@example.com"
+                                    required
                                 />
-                                <label for="floatingInput">username</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input
-                                    type="password"
-                                    class="form-control"
-                                    id="floatingPassword"
-                                    placeholder="Password"
-                                />
-                                <label for="floatingPassword">Password</label>
                             </div>
                             <button
                                 class="w-100 btn btn-lg btn-primary"
