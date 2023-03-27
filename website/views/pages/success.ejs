@@ -22,8 +22,20 @@
     <body>
         <%- include('../components/navbar'); %>
         <br />
-        <h1>An Error has occured</h1>
+        <h1>Success</h1>
         <br />
-        <div><%= errorMessage %></div>
+        <div><%= successMessage %></div>
+        <% if (successMessage == "Ihre Email wurde erfolgreich hinzugefügt!") {
+        %>
+        <br />
+        <button
+            type="button"
+            class="btn btn-primary btn-lg px-4 gap-3"
+            onclick="location.href='/about';"
+            style="margin-left: 3px"
+        >
+            Zurück zur About Seite
+        </button>
+        <% } %>
     </body>
 </html>

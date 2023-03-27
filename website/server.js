@@ -56,6 +56,9 @@ app.get("/logout", (req, res) => {
 app.get("/error", (req, res) => {
     get_error(req, res);
 });
+app.get("/success", (req, res) => {
+    get_success(req, res);
+});
 
 function get_index(req, res) {
     res.render("pages/index", {
@@ -176,6 +179,13 @@ function get_error(req, res, errorMessage) {
     });
 }
 
+function get_success(req, res, successMessage) {
+    res.render("pages/success", {
+        loggedin: req.session.loggedin,
+        successMessage: successMessage,
+    });
+}
+
 // host app on port xxxx
 app.listen(port, () => {
     console.log(`App listening at port ${port}`);
@@ -224,6 +234,7 @@ app.post("/login", encoder, function (req, res) {
     );
 });
 
+// register user
 app.post("/register", encoder, function (req, res) {
     var email = req.body.email;
     var firstname = req.body.firstname;
@@ -255,6 +266,44 @@ app.post("/register", encoder, function (req, res) {
 
                         // render home page
                         get_account(req, res);
+                    }
+                );
+            }
+        }
+    );
+});
+
+// add to mailing list
+app.post("/about", encoder, function (req, res) {
+    var email = req.body.email;
+
+    connection.query(
+        "SELECT * FROM mailinglist WHERE email = ?",
+        [email],
+        function (error, results, fields) {
+            // If there is an issue with the query, output the error
+            if (error) throw error;
+            // If the mail is already in the mailing list
+            if (results.length > 0) {
+                //mail already in list
+                get_success(
+                    req,
+                    res,
+                    "Ihre Email wurde erfolgreich hinzugefügt!"
+                );
+            } else {
+                connection.query(
+                    "INSERT INTO mailinglist (email) VALUES (?)",
+                    [email],
+                    function (error, results, fields) {
+                        // If there is an issue with the query, output the error
+                        if (error) throw error;
+                        // mail added to mailing list
+                        get_success(
+                            req,
+                            res,
+                            "Ihre Email wurde erfolgreich hinzugefügt!"
+                        );
                     }
                 );
             }
