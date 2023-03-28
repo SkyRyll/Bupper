@@ -26,6 +26,14 @@ h1 {
     color: #ffffff;
 }
 
+p {
+    color: #ffffff;
+}
+
+.sgFooter {
+    background-color: #101010;
+    color: #ffffff;
+    
 .no-margin{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
