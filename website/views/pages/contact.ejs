@@ -16,12 +16,58 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="contact.css" />
         <script type="text/javascript" src="scripts.js"></script>
         <title>Kontakt</title>
     </head>
     <body>
         <%- include('../components/navbar'); %>
-        <br />
-        <h1>Kontakt</h1>
+        <div class="contact-page">
+            <h1 style="text-align: center">Nehmen Sie Kontakt mit uns auf</h1>
+            <br />
+            <div class="form">
+                <form class="login-form">
+                    <label for="">E-Mail</label>
+                    <% if (loggedin) { %>
+                    <input
+                        type="text"
+                        placeholder="name@example.com"
+                        value="<%= user.email %>"
+                        name="email"
+                        required
+                    />
+                    <% } else { %>
+                    <input
+                        type="text"
+                        placeholder="name@example.com"
+                        name="email"
+                        required
+                    />
+                    <% } %>
+
+                    <label for="">Name</label>
+
+                    <% if (loggedin) { %>
+                    <input
+                        type="text"
+                        value="<%= user.firstname %> <%= user.lastname %>"
+                        name="name"
+                        required
+                    />
+                    <% } else { %>
+                    <input type="text" name="name" required />
+                    <% } %>
+
+                    <label for="">Deine Nachricht an uns</label>
+                    <textarea
+                        type="textarea"
+                        placeholder=""
+                        name="message"
+                        required
+                    ></textarea>
+                    <button>Send Message</button>
+                </form>
+            </div>
+        </div>
     </body>
 </html>
