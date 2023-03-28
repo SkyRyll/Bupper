@@ -78,10 +78,43 @@ function get_services(req, res) {
     });
 }
 
-function get_contact(req, res) {
-    res.render("pages/contact", {
-        loggedin: req.session.loggedin,
-    });
+function get_contact(req, res, user_id) {
+    //check if user is logged in
+    if (req.session.loggedin) {
+        show_contact(req, res, req.session.userID);
+    } else {
+        res.render("pages/contact", {
+            loggedin: req.session.loggedin,
+        });
+    }
+}
+
+function show_contact(req, res, user_id) {
+    let user = null;
+
+    connection.query(
+        "select * from `accounts` where id = ?",
+        [user_id],
+        function (error, results, fields) {
+            if (error) throw error;
+            if (results.length > 0) {
+                //user found
+                user = results[0];
+
+                //don't supply password hash ;)
+                delete user.password;
+                res.render("pages/contact", {
+                    user: user,
+                    loggedin: req.session.loggedin,
+                });
+                res.end();
+            } else {
+                //invalid userID
+                get_error(req, res, "Kein User Gefunden");
+                console.log("Kein User Gefunden. Hurensohn");
+            }
+        }
+    );
 }
 
 function get_about(req, res) {
@@ -117,7 +150,6 @@ function show_account(req, res, user_id) {
                     user: user,
                     loggedin: req.session.loggedin,
                 });
-                res.end();
             } else {
                 //invalid userID
                 get_error(req, res, "Kein User Gefunden");

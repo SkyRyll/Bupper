@@ -22,11 +22,18 @@
     <body>
         <%- include('../components/navbar'); %>
         <br />
-        <h1>Account</h1>
-        <br />
-        <div><%= user.username %></div>
-        <div><%= user.firstname %></div>
-        <div><%= user.lastname %></div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div style="margin-left: 10px">
+            <h1>Willkommen <%= user.firstname %> <%= user.lastname %></h1>
+            <br />
+            <div style="font-size: 20px">
+                <div>Account Details:</div>
+                <div>User ID: <%= user.id %></div>
+                <div>E-Mail: <%= user.email %></div>
+                <div>Username: <%= user.username %></div>
+                <div>Vorname: <%= user.firstname %></div>
+                <div>Nachname: <%= user.lastname %></div>
+            </div>
+        </div>
+        <%- include('../components/footer'); %>
     </body>
-    <%- include('../components/footer'); %>
 </html>

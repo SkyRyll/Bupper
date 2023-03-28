@@ -33,4 +33,43 @@ p {
 .sgFooter {
     background-color: #101010;
     color: #ffffff;
+    
+.no-margin{
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.product-device-2 {
+  top: -25%;
+  right: auto;
+  bottom: 0;
+  left: 5%;
+  background-color: #000000;
+}
+
+.flex-equal > * {
+  flex: 1;
+}
+
+@media (min-width: 768px) {
+  .flex-md-equal > * {
+    flex: 1;
+  }
+  }
+  
+.bg-image-glasses {
+    filter: blur(8px);
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.glasses-banner {
+    background-image: url(./media/brille_banner.jpg);
+}
+
+.bannerContent {
+    position: relative;
 }
