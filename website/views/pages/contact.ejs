@@ -26,7 +26,12 @@
             <h1 style="text-align: center">Nehmen Sie Kontakt mit uns auf</h1>
             <br />
             <div class="form">
-                <form class="login-form">
+                <form
+                    class="login-form"
+                    action="mailto:info@SchoenesGlas.optik"
+                    method="get"
+                    enctype="text/plain"
+                >
                     <label for="">E-Mail</label>
                     <% if (loggedin) { %>
                     <input
@@ -62,7 +67,7 @@
                     <textarea
                         type="textarea"
                         placeholder=""
-                        name="message"
+                        name="body"
                         required
                     ></textarea>
                     <button>Send Message</button>
