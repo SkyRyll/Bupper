@@ -25,3 +25,20 @@ body {
 h1 {
     color: #ffffff;
 }
+
+.bg-image {
+    filter: blur(8px);
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.glasses-banner {
+    background-image: url(./media/brille_banner.jpg);
+}
+
+.content {
+    position: relative;
+}

@@ -21,7 +21,37 @@
     </head>
     <body>
         <%- include('../components/navbar'); %>
-        <br />
-        <h1>Homepage</h1>
+        <div class="content">
+            <img class="bg-image" src="media/brille_banner.jpg" alt="" />
+        </div>
+        <div
+            class="px-4 py-1 my-1 text-center"
+            style="background-color: black; margin-bottom: 100px"
+        >
+            <img
+                class="d-block mx-auto mb-4"
+                src="media\SchöneGlas.png"
+                alt=""
+                width="400"
+                height="400"
+            />
+            <h1 class="display-5 fw-bold">Das Unternehmen</h1>
+            <div class="col-lg-6 mx-auto" style="margin-bottom: 100px">
+                <p class="lead mb-4">
+                    SchöneGlas verkauft Brillen und bietet Dienstleistunden an.
+                    Um mehr über unser Unternehmen zu erfahren, Folgen die dem
+                    Link
+                </p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button
+                        type="button"
+                        class="btn btn-primary btn-lg px-4 gap-3"
+                        onclick="location.href='/about';"
+                    >
+                        Über Uns
+                    </button>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
