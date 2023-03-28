@@ -59,6 +59,9 @@ app.get("/error", (req, res) => {
 app.get("/success", (req, res) => {
     get_success(req, res);
 });
+app.get("/impressum", (req, res) => {
+    get_impressum(req, res);
+});
 
 function get_index(req, res) {
     res.render("pages/index", {
@@ -87,6 +90,12 @@ function get_contact(req, res, user_id) {
             loggedin: req.session.loggedin,
         });
     }
+}
+
+function get_impressum(req, res) {
+    res.render("pages/impressum", {
+        loggedin: req.session.loggedin,
+    });
 }
 
 function show_contact(req, res, user_id) {
